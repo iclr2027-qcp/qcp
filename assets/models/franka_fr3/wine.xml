@@ -1,0 +1,19 @@
+<mujoco model="QCP wine illustration"><include file="fr3-task.xml"/><option integrator="implicitfast" timestep="0.002" iterations="35"/><default><default class="task"><geom group="5" friction=".6 .004 .0002" solref=".008 1" solimp=".95 .99 .001"/></default></default>
+ <worldbody><geom name="floor" type="plane" size="3 3 .03" group="5"/><body childclass="task" name="pickup_counter" pos=".46 -.28 .27"><geom type="box" size=".21 .17 .02"/></body>
+<body childclass="task" name="dining_table" pos=".62 .33 .27"><geom type="cylinder" size=".36 .02"/></body>
+<body childclass="task" name="tray" pos=".46 -.28 .302"><freejoint/>
+<geom type="box" size=".14 .095 .006" mass=".2" friction=".45 .003 .0001"/>
+<geom type="box" pos="0 .096 .011" size=".145 .004 .009" mass=".01"/><geom type="box" pos="0 -.096 .011" size=".145 .004 .009" mass=".01"/>
+<geom type="capsule" fromto="-.15 -.04 .009 -.15 -.04 .05" size=".006" mass=".005"/><geom type="capsule" fromto="-.15 .04 .009 -.15 .04 .05" size=".006" mass=".005"/>
+<geom type="capsule" fromto="-.15 -.04 .05 -.15 .04 .05" size=".007" mass=".01"/>
+<site name="payload_grip" pos="-.15 0 .05" quat="0 .70710678 .70710678 0" size=".002" group="5"/>
+</body><body childclass="task" name="glass0" pos=".49 -0.32 .313"><freejoint/>
+ <geom type="cylinder" size=".025 .003" mass=".03" friction=".45 .003 .0001"/>
+ <geom type="capsule" fromto="0 0 .003 0 0 .06" size=".003" mass=".005"/>
+ <geom type="ellipsoid" pos="0 0 .092" size=".029 .029 .032" mass=".065"/>
+ </body><body childclass="task" name="glass1" pos=".49 -0.24 .313"><freejoint/>
+ <geom type="cylinder" size=".025 .003" mass=".03" friction=".45 .003 .0001"/>
+ <geom type="capsule" fromto="0 0 .003 0 0 .06" size=".003" mass=".005"/>
+ <geom type="ellipsoid" pos="0 0 .092" size=".029 .029 .032" mass=".065"/>
+ </body></worldbody>
+ <equality><weld name="grasp" site1="grip" site2="payload_grip" active="false" solref=".005 1" torquescale="1"/></equality></mujoco>

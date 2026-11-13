@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learning Quality-Controllable Robot Policies with Iterative Hindsight Relabeling. Project page and video comparisons.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+      <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>QCP: Learning Quality-Controllable Robot Policies</title>
+<link rel="icon" href="assets/images/favicon.svg?v=solid-blue-1" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/template.css">
+  <link rel="stylesheet" href="assets/css/qcp.css?v=hero-3">
+  <link rel="stylesheet" href="assets/css/hero.css?v=19">
+  <link rel="stylesheet" href="assets/css/explainer.css?v=studio-71">
+  <link rel="stylesheet" href="assets/css/explainer-responsive.css?v=11">
+  <link rel="stylesheet" href="assets/css/paper-story.css?v=38">
+  <script src="assets/js/method-figure.js?v=8" defer></script>
+  <script src="assets/js/paper-story.js?v=20" defer></script>
+  <script src="assets/js/result-layout.js?v=7" defer></script>
+  <script src="assets/js/comparisons.js?v=gallery-80" defer></script>
+  <script src="assets/js/site.js?v=gallery-61" defer></script>
+  <script src="assets/js/explainer.js?v=studio-95" defer></script>
+  <link rel="stylesheet" href="assets/css/layout-editor.css?v=studio-57">
+  <script src="assets/js/layout-editor.js?v=studio-75" defer></script>
+  <script src="assets/js/navigation.js?v=hero-1" defer></script>
+  <script src="assets/js/hero.js?v=8" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#comparisons">Skip to video comparisons</a>
+  <header class="hero hero-film" id="project-hero">
+    <div class="hero-media" role="group" aria-label="Real-world task comparison: Baseline on the left, QCP on the right. Both play simultaneously at the same speed.">
+      <div class="hero-scene is-active" data-hero-scene="speed">
+        <video id="hero-speed" data-mobile-src="assets/videos/hero/speed-responsive-mobile.mp4" muted playsinline preload="auto" poster="assets/videos/hero/speed-responsive-poster.jpg" tabindex="-1" disablepictureinpicture><source src="assets/videos/hero/speed-responsive.mp4" type="video/mp4"></video>
+      </div>
+      <div class="hero-scene" data-hero-scene="smoothness">
+        <video id="hero-smoothness" data-mobile-src="assets/videos/hero/smoothness-responsive-mobile.mp4" muted playsinline preload="none" poster="assets/videos/hero/smoothness-responsive-poster.jpg" data-src="assets/videos/hero/smoothness-responsive.mp4" tabindex="-1" disablepictureinpicture></video>
+      </div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <span class="hero-comparison-divider" aria-hidden="true"></span>
+      <div class="hero-comparison-labels" aria-hidden="true"><span class="hero-baseline-label">Baseline</span><span class="hero-qcp-label">QCP</span></div>
+      <div class="hero-film-controls" role="group" aria-label="Real-world demonstrations, both at 2x playback">
+        <span class="hero-playback-rate" aria-label="Both demonstrations play at 2 times speed">(2x)</span>
+        <button type="button" class="hero-scene-button" data-hero-choice="speed" aria-pressed="true" aria-controls="hero-speed" disabled>Speed</button>
+        <span class="hero-scene-separator" aria-hidden="true">/</span>
+        <button type="button" class="hero-scene-button" data-hero-choice="smoothness" aria-pressed="false" aria-controls="hero-smoothness" disabled>Smoothness</button>
+      </div>
+    </div>
+    <div class="container hero-content">
+      <h1 class="paper-title"><span class="hero-acronym">QCP</span>
+        <span class="hero-title-main">Learning Quality-Controllable<br> Robot Policies</span>
+        <span class="hero-title-detail">with Iterative Hindsight Relabeling</span>
+      </h1>
+      <div class="author-list"><span class="author">Anonymous Authors</span></div>
+      <p class="affiliations">Submitted to ICLR 2027</p>
+    </div>
+  </header>
+  <div class="sticky-header" id="sticky-header" inert>
+    <div class="sticky-header-inner">
+      <a class="sticky-title" href="#top"><strong>QCP</strong><span class="sticky-sep">·</span><span class="sticky-authors">Quality-Controllable Robot Policies</span></a>
+      <nav class="sticky-links" aria-label="Section navigation"><a href="#motivation">Motivation</a><a href="#method">Method</a><a href="#results">Result</a><a href="#comparisons">Video Wall</a><a href="#how-it-works">How it works</a></nav>
+    </div>
+  </div>
+  <main>
+    <aside class="page-toc"><nav id="dynamic-toc" class="dynamic-toc" aria-label="Table of contents"></nav></aside>
+    <section class="section tldr-section" aria-label="Summary">
+      <div class="container"><div class="callout"><p><span class="tag">TL;DR</span>
+        Success is only the beginning. QCP controls <mark class="hl">how a robot performs a task</mark>, including its speed, stability, and motion quality, through <strong>quality conditioning</strong> and <strong>iterative hindsight relabeling</strong>.
+      </p></div></div>
+    </section>
+    <section class="section qcp-explainer-section" id="how-it-works" aria-label="QCP introduction">
+      <div class="container container-medium">
+        <div class="qcp-explainer" id="qcp-explainer" data-chapter="-1">
+          <div class="qcp-story-heading">
+            <button type="button" class="qcp-step-arrow qcp-back-button" id="qcp-previous" aria-label="Choose quality again"><span class="qcp-nav-arrow" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><path d="M17 10H3m5-5-5 5 5 5"/></svg></span><span>Choose again</span></button>
+            <div class="qcp-story-copy">
+              <div class="qcp-story-text">
+                <div class="qcp-story-text-active">
+                  <h2 id="qcp-story-title" data-toc-label="How QCP Works">Introduction</h2>
+                  <p id="qcp-story-description"></p>
+                </div>
+              </div>
+            </div>
+            <div class="qcp-loop-strip" aria-label="Iterative hindsight relabeling loop" hidden><span data-loop="0">Roll out</span><i>→</i><span data-loop="1">Measure</span><i>→</i><span data-loop="2">Relabel</span><i>→</i><span data-loop="3">Train</span><i>↻</i><b class="qcp-sr-only" id="qcp-iteration">k = 0</b></div>
+            <button type="button" class="qcp-step-arrow qcp-next-button" id="qcp-next"><span id="qcp-next-label">Continue</span><span class="qcp-nav-arrow" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><path d="M3 10h14m-5-5 5 5-5 5"/></svg></span></button>
+          </div>
+          <div id="qcp-stage" class="qcp-stage" data-chapter="-1">
+            <div class="qcp-stage-content">
+              <div class="qcp-side">
+                <div id="qcp-quality-picker" class="qcp-quality-picker" role="group" aria-label="Choose an execution quality">
+                  <p class="qcp-select-prompt" id="qcp-select-prompt" data-awaiting="true"><span id="qcp-select-label">Select a quality</span></p>
+                  <button data-quality="1" aria-label="Smoothness" aria-pressed="true"><strong>Smoothness</strong><span class="qcp-choice-check" aria-hidden="true"><svg class="qcp-choice-tick" viewBox="0 0 12 12"><path d="M2 6 5 9 10 3"/></svg></span></button>
+                  <button data-quality="0" aria-label="Speed" aria-pressed="false"><strong>Speed</strong><span class="qcp-choice-check" aria-hidden="true"><svg class="qcp-choice-tick" viewBox="0 0 12 12"><path d="M2 6 5 9 10 3"/></svg></span></button>
+                  <button data-quality="3" aria-label="Safety" aria-pressed="false"><strong>Safety</strong><span class="qcp-choice-check" aria-hidden="true"><svg class="qcp-choice-tick" viewBox="0 0 12 12"><path d="M2 6 5 9 10 3"/></svg></span></button>
+                </div>
+                <div id="qcp-knob-controls" class="qcp-knob-controls" hidden>
+                  <div class="qcp-limit-message" id="qcp-limit-message"><span data-edit-id="limit-line-1">Want it even</span><br><span data-edit-id="limit-line-2">smoother?</span></div>
+                  <span class="qcp-eyebrow" id="qcp-dial-quality">Smoothness</span>
+                  <div class="qcp-dial-wrap"><div class="qcp-extra-range" aria-hidden="true"></div><div class="qcp-dial-ticks" aria-hidden="true"></div><div id="qcp-quality-knob" class="qcp-quality-knob" role="slider" tabindex="0" aria-label="Requested quality" aria-describedby="qcp-dial-hint" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><span class="qcp-dial-face"><span class="qcp-dial-pointer"><i class="qcp-dial-needle"></i></span><span class="qcp-dial-hub"></span></span></div><svg class="qcp-limit-arrow" viewBox="0 0 160 160" aria-hidden="true"><path d="M150 98A72 72 0 0 1 106 147"/><path d="m111 138-6 9 11 1"/></svg><span id="qcp-dial-hint" class="qcp-dial-hint"><svg viewBox="0 0 100 22" aria-hidden="true"><defs><marker id="qcp-turn-tip" viewBox="-1 -4 7 8" markerWidth="7" markerHeight="8" refX="4" refY="0" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0-2.7 4 0 0 2.7"/></marker></defs><path d="M6 4A76 76 0 0 0 94 4" marker-start="url(#qcp-turn-tip)" marker-end="url(#qcp-turn-tip)"/></svg><span>Turn to adjust</span></span></div>
+                </div>
+              </div>
+              <div class="qcp-world">
+                <div class="qcp-dial-readout"><strong id="qcp-behavior-name">Smooth</strong></div>
+                <iframe id="qcp-task-frame" class="qcp-robot-frame" title="Interactive QCP robot task, with camera orbit and zoom" allowfullscreen></iframe>
+                <div id="qcp-learning-board" class="qcp-learning-board" hidden></div>
+                <div id="qcp-closing-board" class="qcp-closing-board" hidden></div>
+              </div>
+              <div class="qcp-collect-intro" id="qcp-collect-intro" hidden><p><span data-edit-id="collect-line-1">Dial up.</span><br><span data-edit-id="collect-line-2">Collect more</span><br><strong data-edit-id="collect-line-3">high-quality rollouts.</strong></p></div>
+              <div class="qcp-token-flow" id="qcp-token-flow" data-state="idle" data-preview="true" data-running="false" role="img" aria-label="Smoothness is encoded as a quality token. The token and workspace observation condition the policy, which outputs an action.">
+                <svg class="qcp-conditioning-desktop" viewBox="0 0 180 240" aria-hidden="true">
+                  <g class="qcp-flow-step qcp-flow-token">
+                  <text class="qcp-token-label" x="90" y="22">Quality token</text>
+                  <rect class="qcp-quality-capsule" x="13" y="34" width="154" height="57" rx="12"/>
+                  <text class="qcp-flow-choice" data-flow-quality x="90" y="59">Smoothness</text>
+                  <g class="qcp-token-cluster" transform="translate(90 75)"><rect class="qcp-token-cell" x="-23" y="-7" width="12" height="14" rx="2"/><rect class="qcp-token-cell" x="-6" y="-7" width="12" height="14" rx="2"/><rect class="qcp-token-cell" x="11" y="-7" width="12" height="14" rx="2"/></g>
+                  </g>
+                  <g transform="translate(0 -7)">
+                  <g class="qcp-flow-step qcp-flow-input">
+                  <path class="qcp-circuit-base qcp-flow-arrow" d="M90 105V123m-4-5 4 5 4-5"/><path class="qcp-circuit-light qcp-condition-link qcp-flow-arrow" pathLength="1" d="M90 105V123m-4-5 4 5 4-5"/>
+                  <path class="qcp-observation-wire" d="M56 112H90"/>
+                  <text class="qcp-math qcp-policy-observation" x="44" y="115">𝑜<tspan class="qcp-observation-sub" dy="3">𝑡</tspan></text>
+                  </g>
+                  <g class="qcp-flow-step qcp-flow-policy">
+                  <rect class="qcp-policy-aura" x="30" y="127" width="120" height="50" rx="14"/>
+                  <rect class="qcp-policy-frame" x="35" y="132" width="110" height="40" rx="10"/>
+                  <text class="qcp-math qcp-policy-symbol" x="79" y="157">𝜋<tspan class="qcp-math-sub" dy="5">𝜃</tspan></text>
+                  <text class="qcp-policy-label" x="87" y="156">Policy</text>
+                  <path class="qcp-training-track" d="M50 167H130"/><path class="qcp-training-progress" pathLength="1" d="M50 167H130"/>
+                  <text class="qcp-training-label" data-training-label x="90" y="188">Training</text>
+                  </g>
+                  <g class="qcp-flow-step qcp-flow-output">
+                  <path class="qcp-circuit-base qcp-flow-arrow" d="M90 196V209m-4-5 4 5 4-5"/><path class="qcp-circuit-light qcp-action-link qcp-flow-arrow" pathLength="1" d="M90 196V209m-4-5 4 5 4-5"/>
+                  </g>
+                  <g class="qcp-flow-step qcp-flow-action">
+                  <text class="qcp-math qcp-action-symbol" x="79" y="234">𝑎<tspan class="qcp-math-sub" dy="5">𝑡</tspan></text>
+                  <text class="qcp-action-label" x="87" y="233">Action</text>
+                  </g>
+                  </g>
+                </svg>
+                <svg class="qcp-conditioning-mobile" viewBox="0 0 330 86" aria-hidden="true">
+                  <g class="qcp-flow-step qcp-flow-token">
+                  <text class="qcp-flow-choice" data-flow-quality x="54" y="24">Smoothness</text>
+                  <g class="qcp-token-cluster" transform="translate(54 49)"><path class="qcp-token-brackets" d="M-26-10h-4v20h4M26-10h4v20h-4"/><rect class="qcp-token-cell" x="-23" y="-7" width="12" height="14" rx="2"/><rect class="qcp-token-cell" x="-6" y="-7" width="12" height="14" rx="2"/><rect class="qcp-token-cell" x="11" y="-7" width="12" height="14" rx="2"/></g>
+                  <text class="qcp-token-label" x="54" y="78">Quality token</text>
+                  </g>
+                  <g class="qcp-flow-step qcp-flow-input">
+                  <path class="qcp-circuit-base qcp-flow-arrow" d="M90 49H132m-5-4 5 4-5 4"/><path class="qcp-circuit-light qcp-condition-link qcp-flow-arrow" pathLength="1" d="M90 49H132m-5-4 5 4-5 4"/>
+                  <text class="qcp-math qcp-policy-observation" x="116" y="25">𝑜<tspan class="qcp-observation-sub" dy="3">𝑡</tspan></text>
+                  <path class="qcp-observation-wire" d="M116 33V49"/>
+                  </g>
+                  <g class="qcp-flow-step qcp-flow-policy">
+                  <rect class="qcp-policy-aura" x="135" y="23" width="77" height="54" rx="15"/>
+                  <rect class="qcp-policy-frame" x="140" y="28" width="67" height="44" rx="11"/>
+                  <text class="qcp-math qcp-policy-symbol" x="174" y="51">𝜋<tspan class="qcp-math-sub" dy="5">𝜃</tspan></text>
+                  <text class="qcp-policy-label" x="174" y="66">Policy</text>
+                  <path class="qcp-training-track" d="M151 71H197"/><path class="qcp-training-progress" pathLength="1" d="M151 71H197"/>
+                  <text class="qcp-training-label" data-training-label x="174" y="17">Training</text>
+                  </g>
+                  <g class="qcp-flow-step qcp-flow-output">
+                  <path class="qcp-circuit-base qcp-flow-arrow" d="M215 49H263m-5-4 5 4-5 4"/><path class="qcp-circuit-light qcp-action-link qcp-flow-arrow" pathLength="1" d="M215 49H263m-5-4 5 4-5 4"/>
+                  </g>
+                  <g class="qcp-flow-step qcp-flow-action">
+                  <text class="qcp-math qcp-action-symbol" x="288" y="57">𝑎<tspan class="qcp-math-sub" dy="5">𝑡</tspan></text>
+                  <text class="qcp-action-label" x="288" y="80">Action</text>
+                  </g>
+                </svg>
+                <div id="qcp-trained-policy" class="qcp-trained-policy" aria-hidden="true" hidden>
+                  <div class="qcp-trained-mark" aria-hidden="true"><span>𝜋<sub>𝜃</sub></span></div>
+                  <div class="qcp-trained-title"><span data-edit-id="trained-title">Quality-Controllable</span><strong data-edit-id="trained-policy">Policy</strong></div>
+                  <div class="qcp-trained-status"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3 3 7-7"/></svg><span data-edit-id="trained-status">Trained</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="qcp-sr-only" id="qcp-flow-status" role="status"></span>
+          <div class="qcp-playback">
+            <div class="qcp-time">
+              <div class="qcp-track" id="qcp-timeline" role="slider" tabindex="0" aria-label="Explanation progress" aria-valuemin="0" aria-valuemax="1000" aria-valuenow="0">
+                <div class="qcp-progress-segment" aria-hidden="true"><span></span></div>
+                <div class="qcp-progress-segment" aria-hidden="true"><span></span></div>
+                <div class="qcp-progress-segment" aria-hidden="true"><span></span></div>
+                <div class="qcp-progress-segment" aria-hidden="true"><span></span></div>
+                <div class="qcp-progress-segment" aria-hidden="true"><span></span></div>
+                <div class="qcp-progress-segment" aria-hidden="true"><span></span></div>
+                <div class="qcp-progress-knob" aria-hidden="true"></div>
+              </div>
+              <div class="qcp-chapters" role="group" aria-label="Explanation steps">
+                <button type="button" data-step="-1" aria-pressed="true">Intro</button>
+                <button type="button" data-step="0" aria-pressed="false"><span class="qcp-step-index">1. </span>Choose</button>
+                <button type="button" data-step="1" aria-pressed="false"><span class="qcp-step-index">2. </span>Control</button>
+                <button type="button" data-step="2" aria-pressed="false"><span class="qcp-step-index">3. </span>Go beyond</button>
+                <button type="button" data-step="3" aria-pressed="false"><span class="qcp-step-index">4. </span>Extend</button>
+                <button type="button" data-step="4" aria-pressed="false">Closing</button>
+              </div>
+            </div>
+            <div class="qcp-playback-buttons">
+              <button type="button" id="qcp-play" aria-label="Pause explanation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7v10M15 7v10"/></svg></button>
+              <button type="button" id="qcp-replay" aria-label="Replay this explanation step"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11a7 7 0 1 1 2 6M5 5v6h6"/></svg></button>
+            </div>
+          </div>
+          <noscript><p>QCP conditions the same policy on a selected quality level to control how a task is performed. When a quality beyond the current range is desired, collect rollouts, measure achieved quality, add successes, update quantile labels, and train again to extend the controllable range.</p></noscript>
+        </div>
+      </div>
+    </section>
+    <section id="motivation" class="paper-section" aria-labelledby="motivation-title">
+      <div class="paper-inner">
+        <h2 id="motivation-title">Motivation</h2>
+        <p class="paper-lead">Successful demonstrations contain many ways to move.<br>We want to <strong>choose the quality</strong>, and improve beyond what was demonstrated.</p>
+        <div class="paper-questions">
+          <article><div class="motivation-card-heading"><span class="motivation-number">RQ1</span><h3>Can one policy offer control<span class="rq1-title-break"> </span>over execution quality?</h3></div><p>A task can be completed in many ways, with different levels of speed, smoothness, and safety. How can we learn from this diversity to let users choose the quality they want?</p></article>
+          <article><div class="motivation-card-heading"><span class="motivation-number">RQ2</span><h3>Demonstrations cover a limited range.</h3></div><p>Selecting a behavior within the initial data is only the first step. Can a controllable policy also learn to reach higher quality beyond those demonstrations?</p></article>
+        </div>
+      </div>
+    </section>
+    <section id="method" class="paper-section" aria-labelledby="method-title">
+      <div class="paper-inner">
+        <h2 id="method-title">Method</h2>
+        <div id="paper-method-diagram" class="paper-method-diagram">
+          <article class="method-step" data-method-panel="policy" aria-labelledby="method-condition-title">
+            <div class="method-step-heading"><h3 id="method-condition-title">1. Condition on quality.</h3><button class="method-replay" type="button" aria-label="Replay quality conditioning animation" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8a6 6 0 1 1 1 7M4 3v5h5"/></svg><span class="method-replay-label">Replay</span></button></div>
+            <p class="method-step-copy">Measure each successful trajectory and quantize its score into equal-frequency bins. Train the policy on all successful trajectories, conditioned on their quality labels. At inference time, request a label to select the execution behavior.</p>
+            <div class="method-figure-mount"><p class="method-loading">Loading method diagram…</p></div>
+          </article>
+          <article class="method-step" data-method-panel="relabel" aria-labelledby="method-expand-title">
+            <div class="method-step-heading"><h3 id="method-expand-title">2. Expand the controllable range.</h3><button class="method-replay" type="button" aria-label="Replay iterative relabeling animation" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8a6 6 0 1 1 1 7M4 3v5h5"/></svg><span class="method-replay-label">Replay</span></button></div>
+            <p class="method-step-copy">Collect rollouts with the highest label and keep successes. Measure their achieved quality, recompute labels for the entire accumulated dataset, and retrain. Repeat as better experience enters the data.</p>
+            <div class="method-figure-mount"><p class="method-loading">Loading method diagram…</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="results" class="paper-section paper-result" aria-labelledby="results-title">
+      <div class="paper-inner">
+        <h2 id="results-title">Result</h2>
+        <div id="paper-main" class="paper-result-panel" aria-labelledby="result-main-heading">
+          <div class="paper-result-head"><div class="result-heading"><span class="result-section-dot" aria-hidden="true"></span><h3 id="result-main-heading">Better quality. Higher success.</h3></div><label class="paper-select"><span class="qcp-sr-only">Task and quality</span><select id="paper-task" aria-label="Simulation task and quality"></select></label></div>
+          <p class="result-summary">QCP improves execution quality and task success together over iterations. It learns from all successful rollouts, using quality labels to select better behavior.</p>
+          <div class="paper-evidence">
+            <figure class="paper-plot"><div id="paper-main-plot" class="paper-plot-image" data-figure="assets/images/paper/fig2-0.svg" aria-label="Square speed: task success versus steps to success" role="img"></div><div class="result-axis-label">Success rate</div><div class="result-legend" aria-label="Methods"><span class="legend-qcp"><i class="marker-circle"></i>QCP</span><span class="legend-sorl"><i class="marker-diamond"></i>SORL</span><span class="legend-sciql"><i class="marker-triangle"></i>SCIQL</span><span class="legend-bcq"><i class="marker-plus">+</i>BC-Q</span><span class="legend-bc"><i class="marker-square"></i>BC</span></div><div class="paper-plot-controls"><span class="iteration-key">Earlier <i></i><i></i><i></i> Later</span></div></figure>
+            <div class="paper-videos"><h4 id="paper-task-name" class="qcp-sr-only">Robomimic Square</h4><div class="paper-video-pair"><figure><figcaption>Base</figcaption><video data-role="base" controls muted playsinline preload="none" aria-label="Baseline simulation rollout"></video></figure><figure><figcaption>QCP</figcaption><video data-role="qcp" controls muted playsinline preload="none" aria-label="QCP simulation rollout"></video></figure></div><button id="paper-play-videos" data-result-id="main:button-1" class="paper-button" type="button">Play both</button><p class="qcp-sr-only">The graph reports aggregate results across three seeds. Videos show representative executions, not individual iterations.</p></div>
+          </div>
+
+        </div>
+        <section id="paper-range" class="paper-result-panel" aria-labelledby="result-range-heading">
+          <div class="paper-result-head"><div class="result-heading"><span class="result-section-dot" aria-hidden="true"></span><h3 id="result-range-heading">Beyond the initial best.</h3></div></div>
+          <p class="result-summary">New rollouts shift the quality distribution beyond the best initial demonstrations. Repeated collection and relabeling expand the range of behaviors the policy can achieve.</p>
+          <figure class="paper-figure-wide result-chart range-figure"><div id="paper-range-plot" data-figure="assets/images/paper/fig4-range.svg" aria-label="Smoothness, joint path length, and speed distributions across iterations" role="img"></div></figure>
+        </section>
+        <section id="paper-joint" class="paper-result-panel" aria-labelledby="result-joint-heading">
+          <div class="paper-result-head"><div class="result-heading"><span class="result-section-dot" aria-hidden="true"></span><h3 id="result-joint-heading">Improve multiple qualities together.</h3></div></div>
+          <p class="result-summary">One policy is conditioned on six quality attributes at once. Across four tasks, QCP improves most attributes over both initial BC and BC trained on accumulated rollouts.</p>
+          <div class="result-chart-grid radar-grid">
+            <figure class="paper-figure-wide result-chart radar-chart"><h4>Lift Pot</h4><div id="paper-joint-plot-1" data-figure="assets/images/paper/fig6-view-0.svg" aria-label="Lift Pot" role="img"></div></figure>
+            <figure class="paper-figure-wide result-chart radar-chart"><h4>Stack</h4><div id="paper-joint-plot-2" data-figure="assets/images/paper/fig6-view-1.svg" aria-label="Stack" role="img"></div></figure>
+            <figure class="paper-figure-wide result-chart radar-chart"><h4>Handover</h4><div id="paper-joint-plot-3" data-figure="assets/images/paper/fig6-view-2.svg" aria-label="Handover" role="img"></div></figure>
+            <figure class="paper-figure-wide result-chart radar-chart"><h4>Valve</h4><div id="paper-joint-plot-4" data-figure="assets/images/paper/fig6-view-3.svg" aria-label="Valve" role="img"></div></figure>
+          </div>
+          <div id="paper-radar-legend" class="radar-legend"><span>QCP</span><span>BC (accumulate)</span><span>BC (stem)</span></div>
+        </section>
+        <section id="paper-control" class="paper-result-panel" aria-labelledby="result-control-heading">
+          <div class="paper-result-head"><div class="result-heading"><span class="result-section-dot" aria-hidden="true"></span><h3 id="result-control-heading">Quality tracks the<span class="mobile-heading-break"> </span>requested level.</h3></div><div class="quality-legend" aria-label="Requested quality levels, lowest to highest"><span class="quality-q0" title="Lowest requested quality"><i class="quality-marker" aria-hidden="true"></i>q₀</span><span class="quality-q1"><i class="quality-marker" aria-hidden="true"></i>q₁</span><span class="quality-q2"><i class="quality-marker" aria-hidden="true"></i>q₂</span><span class="quality-q3" title="Highest requested quality"><i class="quality-marker" aria-hidden="true"></i>q₃ (best)</span></div></div>
+          <p class="result-summary">Changing the quality token selects different execution behaviors from one policy. This ordering is preserved as iterative training improves the achievable quality.</p>
+          <div class="result-chart-grid control-grid" tabindex="0" role="region" aria-label="Quality control graphs. Swipe horizontally or use arrow keys to view all six graphs.">
+            <figure class="paper-figure-wide result-chart "><h4>Completion time</h4><div id="paper-control-plot" data-figure="assets/images/paper/fig3-view-0.svg" aria-label="Completion time" role="img"></div></figure>
+            <figure class="paper-figure-wide result-chart "><h4>Action smoothness</h4><div id="paper-control-plot-1" data-figure="assets/images/paper/fig3-view-1.svg" aria-label="Action smoothness" role="img"></div></figure>
+            <figure class="paper-figure-wide result-chart "><h4>EEF smoothness</h4><div id="paper-control-plot-2" data-figure="assets/images/paper/fig3-view-2.svg" aria-label="EEF smoothness" role="img"></div></figure>
+            <figure class="paper-figure-wide result-chart "><h4>EEF speed</h4><div id="paper-control-plot-3" data-figure="assets/images/paper/fig3-view-3.svg" aria-label="EEF speed" role="img"></div></figure>
+            <figure class="paper-figure-wide result-chart "><h4>Translation path</h4><div id="paper-control-plot-4" data-figure="assets/images/paper/fig3-view-4.svg" aria-label="Translation path" role="img"></div></figure>
+            <figure class="paper-figure-wide result-chart "><h4>Rotation path</h4><div id="paper-control-plot-5" data-figure="assets/images/paper/fig3-view-5.svg" aria-label="Rotation path" role="img"></div></figure>
+          </div>
+        </section>
+      </div>
+    </section>
+    <section id="comparisons" class="section comparison-section" aria-labelledby="comparison-title">
+      <div class="wrapper"><h2 id="comparison-title">Video Wall</h2></div>
+      <div class="wrapper gallery-toolbar">
+        <div class="filter-list" role="group" aria-label="Filter comparisons by quality"><button class="filter active" data-filter="all" aria-pressed="true">All qualities</button></div>
+        <div class="gallery-arrows"><button id="previous" class="arrow-button" aria-label="Previous comparison" title="Previous comparison; wraps to the end">←</button><button id="next" class="arrow-button" aria-label="Next comparison" title="Next comparison; wraps to the beginning">→</button></div>
+      </div>
+      <div class="comparison-shell wrapper">
+        <div class="row-labels" aria-hidden="true"><span class="base-row-label">Base</span><span class="qcp-row-label">QCP</span></div>
+        <div id="comparison-track" class="comparison-track" tabindex="0" aria-label="Two-row video comparisons. Use left and right arrow keys or swipe to browse."></div>
+      </div>
+      <p id="gallery-status" class="qcp-sr-only" aria-live="polite"></p>
+      <noscript><p class="wrapper">Enable JavaScript to browse paired video comparisons.</p></noscript>
+    </section>
+
+
+
+  </main>
+  <footer class="footer">
+    <p>QCP · Learning Quality-Controllable Robot Policies</p>
+    <p>Website template based on <a href="https://younghyopark.me/tune-to-learn/" target="_blank" rel="noopener noreferrer">Tune to Learn</a>.
+      Released under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.</p>
+    <p>Interactive robot: <a href="https://github.com/google-deepmind/mujoco_menagerie" target="_blank" rel="noopener noreferrer">MuJoCo Menagerie</a> · <a href="https://threejs.org/" target="_blank" rel="noopener noreferrer">Three.js</a>. Characters: <a href="https://quaternius.com/packs/ultimatedanimatedcharacter" target="_blank" rel="noopener">Quaternius</a> (CC0).</p>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+</body>
+</html>

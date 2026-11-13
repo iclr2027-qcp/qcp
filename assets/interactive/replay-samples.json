@@ -1,0 +1,101 @@
+{
+  "note": "Illustrative controller simulations, not paper evaluation results.",
+  "qualities": {
+    "0": [
+      {
+        "success": true,
+        "score": 0.06666666666666667,
+        "metric": "15.0 s / placement",
+        "quality": 0,
+        "level": 0,
+        "id": "D1",
+        "fresh": false
+      },
+      {
+        "success": true,
+        "score": 0.09090909090909091,
+        "metric": "11.0 s / placement",
+        "quality": 0,
+        "level": 1,
+        "id": "D2",
+        "fresh": false
+      },
+      {
+        "success": true,
+        "score": 0.125,
+        "metric": "8.0 s / placement",
+        "quality": 0,
+        "level": 2,
+        "id": "D3",
+        "fresh": false
+      },
+      {
+        "success": true,
+        "score": 0.1724137931034483,
+        "metric": "5.8 s / placement",
+        "quality": 0,
+        "level": 3,
+        "id": "D4",
+        "fresh": false
+      }
+    ],
+    "1": [
+      {
+        "success": true,
+        "score": 0.9541791485104804,
+        "metric": "48 rad/s³ jerk",
+        "quality": 1,
+        "level": 2,
+        "id": "D3",
+        "fresh": false
+      },
+      {
+        "success": true,
+        "score": 0.9786927894678848,
+        "metric": "22 rad/s³ jerk",
+        "quality": 1,
+        "level": 3,
+        "id": "D4",
+        "fresh": false
+      }
+    ],
+    "3": [
+      {
+        "success": true,
+        "score": 0.05261097746216234,
+        "metric": "5.3 cm clearance",
+        "quality": 3,
+        "level": 0,
+        "id": "D1",
+        "fresh": false
+      },
+      {
+        "success": true,
+        "score": 0.10809923658396467,
+        "metric": "10.8 cm clearance",
+        "quality": 3,
+        "level": 1,
+        "id": "D2",
+        "fresh": false
+      },
+      {
+        "success": true,
+        "score": 0.1938026579247195,
+        "metric": "19.4 cm clearance",
+        "quality": 3,
+        "level": 2,
+        "id": "D3",
+        "fresh": false
+      },
+      {
+        "success": true,
+        "score": 0.23455721856706604,
+        "metric": "23.5 cm clearance",
+        "quality": 3,
+        "level": 3,
+        "id": "D4",
+        "fresh": false
+      }
+    ]
+  }
+}

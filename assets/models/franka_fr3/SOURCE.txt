@@ -1,0 +1,15 @@
+Franka FR3 and Panda hand models from Google DeepMind MuJoCo Menagerie.
+Original licenses retained in LICENSE-FR3 and LICENSE-PANDA.
+https://github.com/google-deepmind/mujoco_menagerie/tree/main/franka_fr3
+https://github.com/google-deepmind/mujoco_menagerie/tree/main/franka_emika_panda
+
+QCP modifications: gravity compensation, torque actuators, 0.002 s timestep.
+fr3.xml retains the earlier fixed-finger demonstration.
+fr3-task.xml adds two actuated sliding fingers and a grip site, disables robot
+collision shapes for the illustrative site-weld grasp, and retains FR3 meshes.
+wine.xml, conveyor.xml, and safety.xml define original task setups, freely moving payloads,
+contact geometry, and a switchable grip weld. safety.xml adds a shared workbench
+and a static worker hand, peg feeder, insertion socket, and four illustrative clearance paths.
+The conveyor pickup moves perpendicular to belt travel into a tray in front of the robot.
+The wine delivery surface is circular. The restaurant/conveyor/assembly visuals and motion
+plans were authored for this project and are explanatory examples.

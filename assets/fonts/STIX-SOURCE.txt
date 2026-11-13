@@ -1,0 +1,4 @@
+STIX Two Math 2.0.2, unmodified WOFF2.
+Source: https://raw.githubusercontent.com/stipub/stixfonts/bea1dc9a3cc2d8b57e412dfd0f448a84382dfe46/archive/STIXv2.0.2/WOFF2/STIX2Math.woff2
+Project: https://github.com/stipub/stixfonts
+License: SIL Open Font License 1.1, see STIX-LICENSE.txt.
